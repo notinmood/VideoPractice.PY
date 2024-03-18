@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "VideoPractice.py"
+version = "0.1.0"
+description = "视频加工的实践项目"
+authors = ["解大劦 <develope@163.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "VideoPractice"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+basiclibrary-py = "^0.6.4"
+opencv-python = "^4.9.0.80"
+pylint = "^3.1.0"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
