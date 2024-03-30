@@ -62,7 +62,7 @@ def convert_image_to_movie(image_full_name: str):
 
 
 def get_setting_every_poem():
-    _draft_template_dir_full_name = os.path.join(root_path, r"剪映/0.模板替换/_res/.MUBAN-meiriyiju")
+    _draft_template_dir_full_name = os.path.join(root_path, r"VideoPractice/剪映草稿/0.模板替换/_res/.MUBAN-meiriyiju")
     _old_image_full_name = r"Z:/mm/每天坚持背一句｜20240302：.jpg"
     _old_draft_name = ".MUBAN-meiriyiju"
 
@@ -74,7 +74,7 @@ def get_setting_every_poem():
 
 
 def get_setting_fang_xie():
-    _draft_template_dir_full_name = os.path.join(root_path, r"剪映/0.模板替换/_res/.MUBAN-央视仿写")
+    _draft_template_dir_full_name = os.path.join(root_path, r"VideoPractice/剪映草稿/0.模板替换/_res/.MUBAN-央视仿写")
     _old_image_full_name = r"Z:/mm/2024_02_25_13_21_19_67_跟着央视练文笔_坚持每天仿写练习写作提升_1.png"
     _old_draft_name = "仿写央视"
 
@@ -86,9 +86,21 @@ def get_setting_fang_xie():
 
 
 def get_setting_old_style():
-    _draft_template_dir_full_name = os.path.join(root_path, r"剪映/0.模板替换/_res/.MUBAN-m1-B")
+    _draft_template_dir_full_name = os.path.join(root_path, r"VideoPractice/剪映草稿/0.模板替换/_res/.MUBAN-m1-B")
     _old_image_full_name = r"Z:/mm/1_每天坚持打卡_一个_后惊艳所有人_[00_00_02][20240314-160441].png"
     _old_draft_name = "MUBAN-M1"
+
+    return {
+        "draft_template_dir_full_name": _draft_template_dir_full_name,
+        "old_image_full_name": _old_image_full_name,
+        "old_draft_name": _old_draft_name
+    }
+
+
+def get_setting_hao_ju():
+    _draft_template_dir_full_name = os.path.join(root_path, r"VideoPractice/剪映草稿/0.模板替换/_res/.MUBAN-好句积累")
+    _old_image_full_name = r"Z:/MyImages/RMRB.人民日报.素材/99.处理完成的素材/CB01/_8_人民日报硬核励志金句_1.png"
+    _old_draft_name = "3月25日"
 
     return {
         "draft_template_dir_full_name": _draft_template_dir_full_name,
@@ -101,13 +113,14 @@ if __name__ == '__main__':
     root_path = ProjectHelper.get_root_physical_path()
     draft_root_dir_full_name = r"Z:\jianying\Data\JianyingPro Drafts"
 
-    # target_dir = r"Z:\MyImages\RMRB.人民日报.素材\00.OK.V1\01"
-    target_dir = r"Z:\mm"
+    target_dir = r"Z:\MyImages\RMRB.人民日报.素材\99.处理完成的素材\CB01"
+    # target_dir = r"Z:\MyImages\RMRB.人民日报.素材\00.OK.V2\00.doing\央视"
 
     # 需要修改的文件名和模板名
     # settings = get_setting_every_poem()
-    settings = get_setting_fang_xie()
+    # settings = get_setting_fang_xie()
     # settings = get_setting_old_style()
+    settings = get_setting_hao_ju()
 
     draft_template_dir_full_name = settings["draft_template_dir_full_name"]
     old_image_full_name = settings["old_image_full_name"]

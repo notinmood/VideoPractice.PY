@@ -10,6 +10,7 @@ import os.path
 from os import PathLike
 
 import cv2
+from BasicLibrary.data.stringHelper import StringHelper
 from BasicLibrary.io.fileHelper import FileHelper
 
 
@@ -21,7 +22,7 @@ def capture_image(video_file_full_name: str | PathLike, *capturing_frame_indexes
     :return:
     """
     if not capturing_frame_indexes:
-        capturing_frame_indexes = 0
+        capturing_frame_indexes = (0,)
     pass
 
     # 读取视频
@@ -47,8 +48,10 @@ def capture_image(video_file_full_name: str | PathLike, *capturing_frame_indexes
         cap.set(cv2.CAP_PROP_POS_FRAMES, capturing_frame_index)
         ret, image_content = cap.read()
         cv2.waitKey(2000)
+
+        capturing_frame_index_fixed = StringHelper.add_padding(capturing_frame_index, 3)
         image_file_full_path = os.path.join(os.path.dirname(video_file_full_name),
-                                            f"{video_file_base_name_no_extension}_F{capturing_frame_index}.Capture.jpg")
+                                            f"{video_file_base_name_no_extension}.F{capturing_frame_index_fixed}.Capture.jpg")
 
         ## 直接使用imwrite的时候，如果图片的导出路径有中文会出现乱码
         # cv2.imwrite(image_file_full_path, image_content)

@@ -12,6 +12,7 @@ python = "^3.12"
 basiclibrary-py = "^0.6.4"
 opencv-python = "^4.9.0.80"
 pylint = "^3.1.0"
+jianyingdraft-py = "^0.1.0"
 
 
 
