@@ -5,7 +5,7 @@ description = "视频加工的实践项目"
 authors = ["解大劦 <develope@163.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "VideoPractice"}]
+packages = [{ include = "VideoPractice" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -14,7 +14,9 @@ opencv-python = "^4.9.0.80"
 pylint = "^3.1.0"
 jianyingdraft-py = "^0.1.0"
 
-
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+pylint = "^3.1.0"
 
 [build-system]
 requires = ["poetry-core"]

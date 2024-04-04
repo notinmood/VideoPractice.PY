@@ -13,13 +13,13 @@ files = [
 
 [[package]]
 name = "basiclibrary-py"
-version = "0.6.10"
+version = "0.6.18"
 description = ""
 optional = false
 python-versions = "<4.0,>=3.12"
 files = [
-    {file = "basiclibrary_py-0.6.10-py3-none-any.whl", hash = "sha256:4d5a2802842ed21f6c45d2bc83c68a6dcd3e10ed46f6810cc19df4581eb95ade"},
-    {file = "basiclibrary_py-0.6.10.tar.gz", hash = "sha256:89a552b3093310b52f2369f438c82618455bc15fa66bd7f2aaeba6320d2bf541"},
+    {file = "basiclibrary_py-0.6.18-py3-none-any.whl", hash = "sha256:fb9c4f0006b7cc86655f8345d8a3328e4effb713b31fda54b2f94b6cdb8d369c"},
+    {file = "basiclibrary_py-0.6.18.tar.gz", hash = "sha256:6898445947b6080c3b9c977145a28fd319264eff3ed7d463783c98f1488f0dbb"},
 ]
 
 [package.dependencies]
@@ -577,4 +577,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "5532a5e4c1886f09cc027d3089d36ad7930b86bd479de511baabb38a41d51eaa"
+content-hash = "e45ac2dc02417c9135431e9ba2b0a80eef5e59d2acaaad4fab845c3fd2fc3801"
