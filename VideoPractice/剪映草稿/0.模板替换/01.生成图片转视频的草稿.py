@@ -67,7 +67,7 @@ if __name__ == '__main__':
     target_dir = r"Z:\MyImages\RMRB.人民日报.素材\00.OK.V1\01"
     # target_dir = r"Z:\mm"
 
-    image_list = DirHelper.get_files(target_dir, True, ".jpg,.jpeg,.png,.webp")
+    image_list = DirHelper.get_files(target_dir, ".jpg,.jpeg,.png,.webp", True)
     for _item in image_list:
         convert_image_to_movie(_item)
     pass

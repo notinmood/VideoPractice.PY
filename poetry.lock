@@ -13,13 +13,13 @@ files = [
 
 [[package]]
 name = "basiclibrary-py"
-version = "0.6.18"
+version = "0.6.19"
 description = ""
 optional = false
 python-versions = "<4.0,>=3.12"
 files = [
-    {file = "basiclibrary_py-0.6.18-py3-none-any.whl", hash = "sha256:fb9c4f0006b7cc86655f8345d8a3328e4effb713b31fda54b2f94b6cdb8d369c"},
-    {file = "basiclibrary_py-0.6.18.tar.gz", hash = "sha256:6898445947b6080c3b9c977145a28fd319264eff3ed7d463783c98f1488f0dbb"},
+    {file = "basiclibrary_py-0.6.19-py3-none-any.whl", hash = "sha256:fcdfc76ce9c953fcffc3bf723fff53b0bed0f90c5de7c3739010f5ca73235887"},
+    {file = "basiclibrary_py-0.6.19.tar.gz", hash = "sha256:02b2a52acf41ffdc91baf7dd7a972b9f7225416542f48da1deddb81577a3ac7d"},
 ]
 
 [package.dependencies]
@@ -93,13 +93,13 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "jianyingdraft-py"
-version = "0.1.10"
+version = "0.1.11"
 description = "帮助剪映快速生成草稿的方案"
 optional = false
 python-versions = "<4.0,>=3.12"
 files = [
-    {file = "jianyingdraft_py-0.1.10-py3-none-any.whl", hash = "sha256:37519290148c3b5fbbecb4e46241a66fde072dd8983aeb40812917971fd926a8"},
-    {file = "jianyingdraft_py-0.1.10.tar.gz", hash = "sha256:3c2d06b4bf581f5261c9b22924bea1f0b02b364d09be8f53d88ec0e39ddd99a5"},
+    {file = "jianyingdraft_py-0.1.11-py3-none-any.whl", hash = "sha256:27406e2e57e2dc6d1c356501b9d2e2551e45b6c53b42ef5b52fe3c2c50e1dd35"},
+    {file = "jianyingdraft_py-0.1.11.tar.gz", hash = "sha256:c70ff7f212cff449ec28ded963991a015daf90f8dfa5d90cec629ca8a4e9defe"},
 ]
 
 [package.dependencies]

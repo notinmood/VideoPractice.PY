@@ -19,12 +19,14 @@ def deal_detail_dir(dealing_dir_full_name, dealing_date_string, *args, **kwargs)
     _args = args
     _kwargs = kwargs
 
+    # 1. 将草稿文件夹移动到分发目录
     jianying_draft_dir = os.path.join(jianying_draft_root, dealing_date_string)
     if DirHelper.is_dir(jianying_draft_dir):
         dest_draft_dir = os.path.join(dealing_dir_full_name, dealing_date_string)
         DirHelper.move(jianying_draft_dir, dest_draft_dir)
     pass
 
+    # 2. 将生成的视频文件移动到分发目录
     jianying_video_full_name = os.path.join(jianying_out_path, f"{dealing_date_string}.mp4")
     if FileHelper.is_file(jianying_video_full_name):
         FileHelper.move(jianying_video_full_name, dealing_dir_full_name)
@@ -35,11 +37,11 @@ def deal_detail_dir(dealing_dir_full_name, dealing_date_string, *args, **kwargs)
 
 if __name__ == '__main__':
     # 指定待处理文件夹的开始日期和结束日期，处理这两个日期之间的所有文件夹
-    start_date_string = '20240403'
-    end_date_string = '20240418'
+    start_date_string = '20240401'
+    end_date_string = '20240430'
 
     #  指定待处理的文件目录
-    target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\视频.V2\{dir_ymd}'
+    target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\视频.M2\{dir_ymd}'
     # target_dir_parent = r'Z:\mm'
 
     jianying_draft_root = r"Z:\jianying\Data\JianyingPro Drafts"

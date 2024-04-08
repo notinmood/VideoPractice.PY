@@ -23,12 +23,19 @@ def deal_cluster_dir(cluster_dir_full_name=""):
         cluster_dir_full_name = r"Z:\BD素材同步\BillFish素材库\SP.视频创作中心\图片素材"
     pass
 
-    # 1. 获取目录下的所有图片文件，每个图片文件单独做成一个5秒钟的视频
+    # 给处理函数{deal_detail_dir_func}，传递各种必要的信息
+    kwargs_for_deal_func = {
+        "some_thing": "some_thing_value",
+        "durationEveryMedia": 4_000_000,  # 每幅图片播放的时长
+        "excludeFileEndNames": ("00.Cover.jpg",),  # 不参与视频生成的文件后缀名
+    }
+
+    # 1. 获取目录下的所有图片文件，每个图片文件单独做成一个n秒钟的视频
     image_file_full_names = DirHelper.get_files(cluster_dir_full_name, include_sub_dir=False,
                                                 extension_names=[".jpg", ".png"])
 
     for image_file_full in image_file_full_names:
-        VideoHelper.generate_video(image_file_full)
+        VideoHelper.generate_video(image_file_full, **kwargs_for_deal_func)
     pass
 
     # 2. 获取目录下子文件夹，每个子文件夹单独做成一个长视频视频（长视频为子文件夹内每个图片5秒的合成）
@@ -40,7 +47,7 @@ def deal_cluster_dir(cluster_dir_full_name=""):
             continue
         pass
 
-        VideoHelper.generate_video(sub_dir_full_name)
+        VideoHelper.generate_video(sub_dir_full_name, **kwargs_for_deal_func)
     pass
 
 

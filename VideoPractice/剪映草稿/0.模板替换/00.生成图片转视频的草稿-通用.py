@@ -126,7 +126,7 @@ if __name__ == '__main__':
     old_image_full_name = settings["old_image_full_name"]
     old_draft_name = settings["old_draft_name"]
 
-    image_list = DirHelper.get_files(target_dir, True, ".jpg,.jpeg,.png,.webp")
+    image_list = DirHelper.get_files(target_dir, ".jpg,.jpeg,.png,.webp", True)
     for image_file_full_name in image_list:
         convert_image_to_movie(image_file_full_name)
     pass

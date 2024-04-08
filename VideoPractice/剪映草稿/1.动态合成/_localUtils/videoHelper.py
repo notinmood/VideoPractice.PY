@@ -17,9 +17,12 @@ from pymediainfo import MediaInfo
 class VideoHelper(object):
     @classmethod
     def generate_video(cls, file_or_dir_full_path: str, draft_name="", **kwargs):
-        duration_every_image = kwargs.get("durationEveryImage", 4_000_000)
+        duration_every_media = kwargs.get("durationEveryMedia", 0)
+        bgm_mute = kwargs.get("bgmMute", False)
         exclude_file_end_names = kwargs.get("excludeFileEndNames", ())
         include_file_end_names = kwargs.get("includeFileEndNames", ".jpg,.png,.bmp,.jpeg,.gif,.webp")
+
+        bgm_fade_out_duration = kwargs.get("bgmFadeOutDuration", 1_000_000)
 
         if not draft_name:
             draft_name = os.path.basename(file_or_dir_full_path)
@@ -28,7 +31,7 @@ class VideoHelper(object):
         draft = Draft(draft_name)
 
         dir_full_path = ""
-        file_full_name= ""
+        file_full_name = ""
         if os.path.isdir(file_or_dir_full_path):
             dir_full_path = file_or_dir_full_path
         pass
@@ -44,18 +47,18 @@ class VideoHelper(object):
                     continue
                 pass
 
-                draft.add_media(image_file_full_name, duration=duration_every_image)
+                draft.add_media(image_file_full_name, duration=duration_every_media, bgm_mute=bgm_mute)
             pass
         pass
 
         if file_full_name:
-            draft.add_media(file_full_name, duration=duration_every_image)
+            draft.add_media(file_full_name, duration=duration_every_media)
         pass
 
         draft_duration = draft.calc_draft_duration()
         audio_file_full_name = cls.get_audio_file_full_name(draft_duration)
         if audio_file_full_name:
-            draft.add_media(audio_file_full_name)
+            draft.add_media(audio_file_full_name, fade_out_duration=bgm_fade_out_duration)
         pass
 
         draft.save()
@@ -63,7 +66,7 @@ class VideoHelper(object):
     @staticmethod
     def get_audio_file_full_name(min_duration: int):
         audio_dir_full_name = r"Z:\BD素材同步\BillFish素材库\SP.视频创作中心\BGM.背景音乐"
-        audio_file_list = DirHelper.get_files(audio_dir_full_name, True, ".mp3,.wav")
+        audio_file_list = DirHelper.get_files(audio_dir_full_name, ".mp3,.wav", True)
         audio_count = len(audio_file_list)
         # 因为是在所有的音频中随机找一条，验证是否符合标准，如果不符合标准，则继续找，最多找2倍音频数的次数
         # 如果这样还找不到，那基本就没有这样符合条件的音频了
