@@ -11,6 +11,8 @@ import random
 
 from BasicLibrary.io.dirHelper import DirHelper
 from JianYingDraft.core.draft import Draft
+from JianYingDraft.utils.innerBizTypes import transitionDict
+from JianYingDraft.utils import tools
 from pymediainfo import MediaInfo
 
 
@@ -18,11 +20,20 @@ class VideoHelper(object):
     @classmethod
     def generate_video(cls, file_or_dir_full_path: str, draft_name="", **kwargs):
         duration_every_media = kwargs.get("durationEveryMedia", 0)
+        duration_first_media = kwargs.get("durationFirstMedia", 0)
+
+        if not duration_first_media:
+            duration_first_media = duration_every_media
+        pass
+
         bgm_mute = kwargs.get("bgmMute", False)
         exclude_file_end_names = kwargs.get("excludeFileEndNames", ())
         include_file_end_names = kwargs.get("includeFileEndNames", ".jpg,.png,.bmp,.jpeg,.gif,.webp")
 
         bgm_fade_out_duration = kwargs.get("bgmFadeOutDuration", 1_000_000)
+        transition_name = kwargs.get("transitionName", "")
+        transition_duration = kwargs.get("transitionDuration", 1_000_000)
+        transition_data = cls.generate_transition(transition_name, transition_duration)
 
         if not draft_name:
             draft_name = os.path.basename(file_or_dir_full_path)
@@ -40,21 +51,34 @@ class VideoHelper(object):
             file_full_name = file_or_dir_full_path
         pass
 
+        # 1. 处理目录下的多个图片
         if dir_full_path:
             image_file_full_names = DirHelper.get_files(dir_full_path, extension_names=include_file_end_names)
+            image_index = 0
             for image_file_full_name in image_file_full_names:
                 if image_file_full_name.endswith(exclude_file_end_names):
                     continue
                 pass
 
-                draft.add_media(image_file_full_name, duration=duration_every_media, bgm_mute=bgm_mute)
+                if image_index == 0:
+                    _duration = duration_first_media
+                else:
+                    _duration = duration_every_media
+                pass
+
+                image_index += 1
+                draft.add_media(image_file_full_name, duration=_duration, bgm_mute=bgm_mute,
+                                transition_data=transition_data)
             pass
         pass
 
+        # 2. 处理单个文件
         if file_full_name:
-            draft.add_media(file_full_name, duration=duration_every_media)
+            draft.add_media(file_full_name, duration=duration_every_media, bgm_mute=bgm_mute,
+                            transition_data=transition_data)
         pass
 
+        # 3. 添加背景音乐
         draft_duration = draft.calc_draft_duration()
         audio_file_full_name = cls.get_audio_file_full_name(draft_duration)
         if audio_file_full_name:
@@ -93,6 +117,29 @@ class VideoHelper(object):
             if try_count >= compare_count:
                 return None
             pass
+
+    @staticmethod
+    def get_random_transition_name():
+        count = len(transitionDict)
+        rand_number = random.randint(0, count - 1)
+        return list(transitionDict.keys())[rand_number]
+
+    @classmethod
+    def generate_transition(cls, transition_name: str, duration: int = 1_000_000):
+        if not transition_name:
+            return None
+        pass
+
+        if transition_name == "[[random]]":
+            transition_name = cls.get_random_transition_name()
+        pass
+
+        if transition_name not in transitionDict:
+            return None
+        pass
+
+        transition_data = tools.generate_transition_data(transition_name, duration)
+        return transition_data
 
 
 pass

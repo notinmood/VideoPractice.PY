@@ -93,13 +93,13 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "jianyingdraft-py"
-version = "0.1.11"
+version = "1.0.1"
 description = "帮助剪映快速生成草稿的方案"
 optional = false
 python-versions = "<4.0,>=3.12"
 files = [
-    {file = "jianyingdraft_py-0.1.11-py3-none-any.whl", hash = "sha256:27406e2e57e2dc6d1c356501b9d2e2551e45b6c53b42ef5b52fe3c2c50e1dd35"},
-    {file = "jianyingdraft_py-0.1.11.tar.gz", hash = "sha256:c70ff7f212cff449ec28ded963991a015daf90f8dfa5d90cec629ca8a4e9defe"},
+    {file = "jianyingdraft_py-1.0.1-py3-none-any.whl", hash = "sha256:1c79a3962e97e62cd0b5940a53291637559237df70068af090e8fc69ac09141e"},
+    {file = "jianyingdraft_py-1.0.1.tar.gz", hash = "sha256:bc681078357dd2db8c57b465305210d47dddc692f272146ba3beb65f4ffa0fba"},
 ]
 
 [package.dependencies]
@@ -577,4 +577,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "e45ac2dc02417c9135431e9ba2b0a80eef5e59d2acaaad4fab845c3fd2fc3801"
+content-hash = "ffe5fff9b123552c3de48e06b636bbac9161031f4cea7c1fa062636cf04bdc64"
