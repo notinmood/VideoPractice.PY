@@ -30,11 +30,11 @@ def deal_detail_dir(dealing_dir_full_name, dealing_date_string, *args, **kwargs)
 if __name__ == '__main__':
     # 指定待处理文件夹的开始日期和结束日期，处理这两个日期之间的所有文件夹
     start_date_string = '20240401'
-    end_date_string = '20240430'
+    end_date_string = "20240430"  # '20240430'
 
     #  指定待处理的文件目录
-    # target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\微信.D.辞文之美.D1\{dir_ymd}'
-    target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\视频.M3\{dir_ymd}'
+    target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\微信.D.辞文之美.D4\{dir_ymd}'
+    # target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\视频.V3\{dir_ymd}'
     # target_dir_parent = r'Z:\mm'
 
     # 给处理函数{deal_detail_dir_func}，传递各种必要的信息

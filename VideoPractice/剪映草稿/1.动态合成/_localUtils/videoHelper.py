@@ -55,8 +55,10 @@ class VideoHelper(object):
         if dir_full_path:
             image_file_full_names = DirHelper.get_files(dir_full_path, extension_names=include_file_end_names)
             image_index = 0
+            image_count = len(image_file_full_names)
             for image_file_full_name in image_file_full_names:
                 if image_file_full_name.endswith(exclude_file_end_names):
+                    image_count -= 1
                     continue
                 pass
 
@@ -67,6 +69,10 @@ class VideoHelper(object):
                 pass
 
                 image_index += 1
+                # 最后一张图片 无需过渡效果
+                if image_index == image_count:
+                    transition_data = None
+                pass
                 draft.add_media(image_file_full_name, duration=_duration, bgm_mute=bgm_mute,
                                 transition_data=transition_data)
             pass

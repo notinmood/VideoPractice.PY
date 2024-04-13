@@ -14,6 +14,27 @@ from BasicLibrary.data.dateTimeHelper import DateTimeHelper
 from BasicLibrary.data.stringHelper import StringHelper
 from BasicLibrary.io.dirHelper import DirHelper
 from BasicLibrary.io.fileHelper import FileHelper
+from BasicLibrary.data.dateTimePlaceHolderHelper import DateTimePlaceHolderHelper
+from BasicLibrary.model.returnResult import ReturnResult
+
+
+def deal_detail_dir(dealing_dir_full_name, dealing_date_string, *args, **kwargs) -> ReturnResult:
+    _args = args
+
+    include_file_end_names = kwargs.get("includeFileEndNames", (".mp4", ".mov"))
+    exclude_file_end_names = kwargs.get("excludeFileEndNames", (".168x",))  # 默认是一个非常特殊的后缀名，仅仅是为了正常场景下不会出现这种情况
+
+    file_list = DirHelper.get_files(dealing_dir_full_name, extension_names=include_file_end_names)
+    for _item in file_list:
+        if _item.endswith(exclude_file_end_names):
+            continue
+        pass
+
+        capture_image(_item)
+        print(f"->视频{FileHelper.get_base_name(_item)}处理完成 - {DateTimeHelper.get_string()}")
+    pass
+
+    return ReturnResult.Ok(f"✅【{dealing_date_string}】 处理完成 - {DateTimeHelper.get_string()}")
 
 
 def capture_image(input_video_file_full_name: str | PathLike,
@@ -79,15 +100,26 @@ def capture_image(input_video_file_full_name: str | PathLike,
 
 
 if __name__ == '__main__':
-    # 设置要转换视频所在的目录
-    video_dir_full_name = r"Z:\MyImages\RMRB.人民日报.素材\00.OK.V2\00.doing\央视"
+    # 指定待处理文件夹的开始日期和结束日期，处理这两个日期之间的所有文件夹
+    start_date_string = '20240603'
+    end_date_string = '20240708'
 
-    file_list = DirHelper.get_files(video_dir_full_name, extension_names=".mp4;.mov")
-    for _item in file_list:
-        capture_image(_item)
-        print(f"✅视频{FileHelper.get_base_name(_item)}处理完成 - {DateTimeHelper.get_string()}")
-    pass
-    print(f"✅✅目录 - {video_dir_full_name} 全部处理完成")
+    #  指定待处理的文件目录
+    # target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\微信.D.辞文之美.D1\{dir_ymd}'
+    target_dir_parent = r'Z:\BD素材同步\BillFish素材库\RMRB.人民日报\00.Published\{dir_ym}\视频.V1\{dir_ymd}'
+    # target_dir_parent = r'Z:\mm'
 
-    # file_name = r"Z:\mm\1_跟着央视练文笔，坚持每日写作提升练习.mp4"
-    # capture_image(file_name)
+    # 给处理函数{deal_detail_dir_func}，传递各种必要的信息
+    kwargs_for_deal_func = {
+        "some_thing": "some_thing_value",
+        "includeFileEndNames": (".mp4", ".mov"),  # 参与工作的文件后缀名
+        # "excludeFileEndNames": ("00.cover.mov",),  # 不参与工作的文件后缀名
+    }
+
+    DateTimePlaceHolderHelper.loop_dirs_with_date(
+        start_date_string=start_date_string,
+        end_date_string=end_date_string,
+        target_dir_with_placeholder=target_dir_parent,
+        deal_detail_dir_func=deal_detail_dir,
+        **kwargs_for_deal_func
+    )
